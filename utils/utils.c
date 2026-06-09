@@ -260,10 +260,21 @@ void move_numa(void *ptr, size_t size, int target_node) {
     } else if (v == 2 || v == 3) {
         int dev = 0;
         cudaGetDevice(&dev);
+#if CUDART_VERSION >= 13000
+        struct cudaMemLocation loc;
+        loc.type = cudaMemLocationTypeDevice;
+        loc.id = dev;
+        if (v == 3) {
+            cudaMemAdvise(aligned_ptr, aligned_size,
+                          cudaMemAdviseSetPreferredLocation, loc);
+        }
+        cudaMemPrefetchAsync(aligned_ptr, aligned_size, loc, 0, scilib_cuda_stream);
+#else
         if (v == 3)
             cudaMemAdvise(aligned_ptr, aligned_size,
                           cudaMemAdviseSetPreferredLocation, dev);
         cudaMemPrefetchAsync(aligned_ptr, aligned_size, dev, scilib_cuda_stream);
+#endif
         cudaStreamSynchronize(scilib_cuda_stream);
         tag = (v == 2) ? "move_pref " : "move_adpf ";
     } else if (v == 4) {

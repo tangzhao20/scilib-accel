@@ -13,9 +13,9 @@ extern int scilib_skip_flag;
 
 
 
-#define GiB 1024*1024*1024;
-#define MiB 1024*1024;
-#define KiB 1024;
+#define GiB (1024ULL * 1024ULL * 1024ULL)
+#define MiB (1024ULL * 1024ULL)
+#define KiB (1024ULL)
 
 // Define the DEBUG macro
 #define DEBUG1(x) do { if (scilib_debug>=1) { x; } } while (0)

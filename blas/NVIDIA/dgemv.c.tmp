@@ -17,10 +17,10 @@ void _DGEMV(const char *trans, const int *m, const int *n, const double *alpha, 
 
     double avgn = sqrt((double)*m * (double)*n);
 
-    int size_type = sizeof(double);
-    size_t sizeA = (*m) * (*lda);
-    size_t sizeX = (*n) * abs(*incx);
-    size_t sizeY = (*m) * abs(*incy);
+    size_t size_type = sizeof(double);
+    size_t sizeA = (size_t)(*m) * (size_t)(*lda);
+    size_t sizeX = (size_t)(*n) * (size_t)(abs(*incx));
+    size_t sizeY = (size_t)(*m) * (size_t)(abs(*incy));
     sizeA *= size_type;
     sizeX *= size_type;
     sizeY *= size_type;

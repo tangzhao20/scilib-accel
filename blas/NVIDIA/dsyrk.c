@@ -17,9 +17,9 @@ void _DSYRK(const char *uplo, const char *trans, const int *n, const int *k, con
 
     double avgn = cbrt((double)*n * (double)*n * (double)*k);
 
-    int size_type = sizeof(double);
-    size_t sizeA = (*lda) * ((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
-    size_t sizeC = (*n) * (*ldc);
+    size_t size_type = sizeof(double);
+    size_t sizeA = (size_t)(*lda) * (size_t)((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
+    size_t sizeC = (size_t)(*n) * (size_t)(*ldc);
     sizeA *= size_type;
     sizeC *= size_type;
 

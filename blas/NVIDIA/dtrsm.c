@@ -20,9 +20,9 @@ void _DTRSM(const char *side, const char *uplo, const char *transa, const char *
 
     double avgn = cbrt((double)*m * (double)*n * (double)*k);
 
-    int size_type = sizeof(double);
-    size_t sizeA = (*k) * (*lda);
-    size_t sizeB = (*n) * (*ldb);
+    size_t size_type = sizeof(double);
+    size_t sizeA = (size_t)(*k) * (size_t)(*lda);
+    size_t sizeB = (size_t)(*n) * (size_t)(*ldb);
     sizeA *= size_type;
     sizeB *= size_type;
 

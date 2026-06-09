@@ -23,10 +23,10 @@ void _CGEMM( const char* transa, const char* transb, const int* m, const int* n,
 
     double avgn=cbrt(*m)*cbrt(*n)*cbrt(*k);
 
-    int size_type = sizeof(cuFloatComplex);
-    size_t sizeA = (transa[0] == 'N'||transa[0] == 'n') ? ((*k) * (*lda)) : ((*m) * (*lda));
-    size_t sizeB = (transb[0] == 'N'||transb[0] == 'n') ? ((*n) * (*ldb)) : ((*k) * (*ldb));
-    size_t sizeC = (*n) * (*ldc);
+    size_t size_type = sizeof(cuFloatComplex);
+    size_t sizeA = (transa[0] == 'N'||transa[0] == 'n') ? ((size_t)(*k) * (size_t)(*lda)) : ((size_t)(*m) * (size_t)(*lda));
+    size_t sizeB = (transb[0] == 'N'||transb[0] == 'n') ? ((size_t)(*n) * (size_t)(*ldb)) : ((size_t)(*k) * (size_t)(*ldb));
+    size_t sizeC = (size_t)(*n) * (size_t)(*ldc);
     sizeA *= size_type;
     sizeB *= size_type;
     sizeC *= size_type;

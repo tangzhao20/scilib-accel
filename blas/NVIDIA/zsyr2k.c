@@ -17,10 +17,10 @@ void _ZSYR2K(const char *uplo, const char *trans, const int *n, const int *k, co
 
     double avgn = cbrt((double)*n * (double)*n * (double)*k);
 
-    int size_type = sizeof(cuDoubleComplex);
-    size_t sizeA = (*lda) * ((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
-    size_t sizeB = (*ldb) * ((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
-    size_t sizeC = (*ldc) * (*n);
+    size_t size_type = sizeof(cuDoubleComplex);
+    size_t sizeA = (size_t)(*lda) * (size_t)((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
+    size_t sizeB = (size_t)(*ldb) * (size_t)((trans[0] == 'N' || trans[0] == 'n') ? *k : *n);
+    size_t sizeC = (size_t)(*ldc) * (size_t)(*n);
     sizeA *= size_type;
     sizeB *= size_type;
     sizeC *= size_type;

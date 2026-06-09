@@ -18,10 +18,10 @@ void _CSYMM(const char *side, const char *uplo, const int *m, const int *n, cons
 
     double avgn = cbrt((double)*m * (double)*n * (double)*k);
 
-    int size_type = sizeof(cuFloatComplex);
-    size_t sizeA = (*k) * (*lda);
-    size_t sizeB = (*n) * (*ldb);
-    size_t sizeC = (*n) * (*ldc);
+    size_t size_type = sizeof(cuFloatComplex);
+    size_t sizeA = (size_t)(*k) * (size_t)(*lda);
+    size_t sizeB = (size_t)(*n) * (size_t)(*ldb);
+    size_t sizeC = (size_t)(*n) * (size_t)(*ldc);
     sizeA *= size_type;
     sizeB *= size_type;
     sizeC *= size_type;
